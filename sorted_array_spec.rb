@@ -34,7 +34,7 @@ describe SortedArray do
         it_should_behave_like "yield to all elements in sorted array", :map
 
         it 'creates a new array containing the values returned by the block' do
-          expect { (1..10).map {|x| x*2} } == [2,4,6,8,10,12,14,16,18,20]
+          (1..10).map {|x| x*2}.should == [2,4,6,8,10,12,14,16,18,20]
           #pending "fill this spec in with a meaningful example"
         end
       end
@@ -51,7 +51,7 @@ describe SortedArray do
 
         it 'should replace value of each element with the value returned by block' do
           original_array = [1,2,3,4,5,6,7,9,8]
-          expect { original_array.map! {|el| el * 2 } } == [2,4,6,8,10,12,14,18,16]
+          original_array.map! {|el| el * 2 }.should == [2,4,6,8,10,12,14,18,16]
         end
       end
     end
@@ -59,8 +59,12 @@ describe SortedArray do
 
   describe :find do
     it "find first odd element" do
-      expect { sorted_array.find {|x| x % 2 == 0} } == 3
+      sorted_array.find { |x| x % 2 != 0 }.should == 3
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
+    end
+
+    it "find element not there" do
+      sorted_array.find { |x| x == 100 }.should == nil
     end
   end
 
@@ -74,48 +78,48 @@ describe SortedArray do
     #WHAT THE LITERAL AND ACTUAL FUCK?!?!?!
 
     it "numeric inject" do
-      expect { (1..10).inject(0) { |sum, x| sum+x } } == 55
+      (1..10).inject(0) { |sum, x| sum+x }.should == 55
     end
     #pass
 
     it "numeric inject 2 - acc=nil" do
-      expect { (1..10).inject { |sum, x| sum+x } } == 55
+      (1..10).inject { |sum, x| sum+x }.should == 55
     end
     #pass
 
     it "numeric inject 2 - multiplication with acc= a number" do
-      expect { (1..10).inject(1) { |prod, x| prod*x } } == 3628800
+      (1..10).inject(1) { |prod, x| prod*x }.should == 3628800
     end
     #pass
 
     it "numeric inject 3 - multiplication with acc = nil" do
-      expect { (1..10).inject { |prod, x| prod*x } } == 3628800
+      (1..10).inject { |prod, x| prod*x }.should == 3628800
     end
 
     it "with sorted_array - acc = 1 - product" do
-      expect { sorted_array.inject(1) { |prod,x| prod*x } } == 1512
+      sorted_array.inject(1) { |prod,x| prod*x }.should == 1512
     end
     
     it "with sorted_array - acc = nil - product" do
-      expect { sorted_array.inject(1) { |prod,x| prod*x } } == 1512
+      sorted_array.inject(1) { |prod,x| prod*x }.should == 1512
     end
 
     it "with sorted_array - acc = 0 - sum" do
-      expect { sorted_array.inject(0) { |sum,x| sum + x } } == 25
+      sorted_array.inject(0) { |sum,x| sum + x }.should == 25
     end
 
     it "with sorted_array - acc = nil - sum" do
-      expect { sorted_array.inject { |sum,x| sum + x } } == 25
+      sorted_array.inject { |sum,x| sum + x }.should == 25
     end
 
     it "string" do
-      expect { ["h","e","l","l","o"].inject("") { |sum, x| sum+x } } == "hello"
+      ["h","e","l","l","o"].inject("") { |sum, x| sum+x }.should == "hello"
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
     #pass
 
     it "string 2 - acc = nil" do
-      expect { ["h","e","l","l","o"].inject { |sum, x| sum+x } } == "hello"
+      ["h","e","l","l","o"].inject { |sum, x| sum+x }.should == "hello"
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
   end

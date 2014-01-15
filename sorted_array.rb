@@ -74,27 +74,24 @@ class SortedArray
 
   def find &block
     i=0
-    while i < internal_arr.size
-      if yield(internal_arr[i])
-        return internal_arr[i] 
+    until i == @internal_arr.size 
+      if yield(@internal_arr[i])
+        return @internal_arr[i] 
       else
         i+=1
       end
     end
 
-    #@internal_arr.each { |x| return x if yield(x)}
-
-    # i = 0
-    # until i == @internal_arr.size
-    #   return i if @internal_arr[i] == value
-    #   i+=1
-    # end
+    return nil
+    
     raise NotImplementedError.new("You need to implement the find method!")
   end
 
   def inject acc=nil, &block
     # if acc == nil
     #   acc = @[0]
+    #Can be re-written to take advantage of the nil case
+    #Code already passes nil cases with array of integers and array of strings
 
     self.each { |x| acc = yield(acc, x) }
     return acc
