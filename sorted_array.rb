@@ -37,6 +37,15 @@ class SortedArray
     @internal_arr.insert(lo, el)
   end
 
+  def each_with_index &block
+    i = 0
+    until i = @internal_arr.size
+      yield(@internal_arr[i], i)
+      i+=1
+    end
+    return @internal_arr
+  end
+
   def each &block
     i = 0
     until i == @internal_arr.size
@@ -76,11 +85,11 @@ class SortedArray
   end
 
   def inject acc=nil, &block
-    if acc == nil
+    if acc.nil?
       acc = @internal_arr[0]
       i = 1
       until i == @internal_arr.size
-        yield acc = yield(acc, @internal_arr[i])
+        acc = yield(acc, @internal_arr[i])
         i+=1
       end
       return acc
