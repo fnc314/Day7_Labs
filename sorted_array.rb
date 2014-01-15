@@ -76,13 +76,24 @@ class SortedArray
   end
 
   def inject acc=nil, &block
-    # if acc == nil
-    #   acc = @[0]
+    if acc == nil
+      acc = @internal_arr[0]
+      i = 1
+      until i == @internal_arr.size
+        yield acc = yield(acc, @internal_arr[i])
+        i+=1
+      end
+      return acc
+    else
+      self.each { |x| acc = yield(acc, x) }
+      return acc
+    end
+
     #Can be re-written to take advantage of the nil case
     #Code already passes nil cases with array of integers and array of strings
 
-    self.each { |x| acc = yield(acc, x) }
-    return acc
+    # self.each { |x| acc = yield(acc, x) }
+    # return acc
     #raise NotImplementedError.new("You need to implement the inject method!")
   end
 end

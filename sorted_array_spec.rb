@@ -101,7 +101,7 @@ describe SortedArray do
     end
     
     it "with sorted_array - acc = nil - product" do
-      sorted_array.inject(1) { |prod,x| prod*x }.should == 1512
+      sorted_array.inject { |prod,x| prod*x }.should == 1512
     end
 
     it "with sorted_array - acc = 0 - sum" do
