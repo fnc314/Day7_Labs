@@ -99,6 +99,33 @@ class SortedArray
       self.each { |x| acc = yield(acc, x) }
       return acc
     end
-
   end
+
 end
+
+#following code copied from HipChat from Stuart => GENIOUS!!!
+# def inject acc=nil, &block
+
+#   if acc.class == Symbol
+#     # if acc is a symbol, then that's the method we'll use to accumulate
+#     op = acc
+#     start_value = @internal_arr.shift
+#     acc = start_value
+#     self.each { | ele | acc = acc.send(op, ele)}
+#     @internal_arr.unshift(start_value)
+
+#   elsif acc == nil
+#     # if acc is nil, then set it to the first value in the arr
+#     start_value = @internal_arr.shift
+#     acc = start_value
+#     self.each { |ele| acc = yield(acc, ele) }
+#     @internal_arr.unshift(start_value)
+
+#   else
+#     # Acc is set to the first value of @internal_arr
+#     self.each { |ele| acc = yield(acc, ele) }
+#   end
+
+#   acc
+    
+#   end

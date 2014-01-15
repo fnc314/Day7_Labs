@@ -71,6 +71,10 @@ describe SortedArray do
       sorted_array.find { |x| x % 2 != 0 }.should == 3
     end
 
+    it "find 4" do
+      sorted_array.find { |x| x == 4 }.should == 4
+    end
+
     it "find element not there" do
       sorted_array.find { |x| x == 100 }.should == nil
     end
@@ -117,11 +121,13 @@ describe SortedArray do
     end
 
     it "string" do
-      ["h","e","l","l","o"].inject("") { |sum, x| sum+x }.should == "hello"
+      sorted_array = SortedArray.new(["h","e","l","l","o"])
+      sorted_array.inject("") { |sum, x| sum+x }.should == "ehllo"
     end
 
     it "string 2 - acc = nil" do
-      ["h","e","l","l","o"].inject { |sum, x| sum+x }.should == "hello"
+      sorted_array = SortedArray.new(["h","e","l","l","o"])
+      sorted_array.inject { |sum, x| sum+x }.should == "ehllo"
     end
   end
 end
