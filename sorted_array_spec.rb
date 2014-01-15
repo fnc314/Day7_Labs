@@ -24,6 +24,16 @@ describe SortedArray do
           sorted_array.each {|el| el }.should eq source
         end
       end
+ 
+      describe :each_with_index do
+        context 'when passed a block' do
+          it_should_behave_like "yield to all elements in sorted array", :each_with_index
+        end
+
+        it 'should return the array' do
+          sorted_array.each_with_index {|el,i| el }.should == source
+        end
+      end
 
       describe :map do
         it 'the original array should not be changed' do
@@ -35,7 +45,6 @@ describe SortedArray do
 
         it 'creates a new array containing the values returned by the block' do
           (1..10).map {|x| x*2}.should == [2,4,6,8,10,12,14,16,18,20]
-          #pending "fill this spec in with a meaningful example"
         end
       end
     end
@@ -60,7 +69,6 @@ describe SortedArray do
   describe :find do
     it "find first odd element" do
       sorted_array.find { |x| x % 2 != 0 }.should == 3
-      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-find"
     end
 
     it "find element not there" do
@@ -75,22 +83,18 @@ describe SortedArray do
     #     sorted_array.send(method, block_with_two_args) 
     #   end.to yield_successive_args( [0,2], [2,3], [5,4], [9, 7], [16,9])
     # end
-    #WHAT THE LITERAL AND ACTUAL FUCK?!?!?!
 
     it "numeric inject" do
       (1..10).inject(0) { |sum, x| sum+x }.should == 55
     end
-    #pass
 
     it "numeric inject 2 - acc=nil" do
       (1..10).inject { |sum, x| sum+x }.should == 55
     end
-    #pass
 
     it "numeric inject 2 - multiplication with acc= a number" do
       (1..10).inject(1) { |prod, x| prod*x }.should == 3628800
     end
-    #pass
 
     it "numeric inject 3 - multiplication with acc = nil" do
       (1..10).inject { |prod, x| prod*x }.should == 3628800
@@ -114,13 +118,10 @@ describe SortedArray do
 
     it "string" do
       ["h","e","l","l","o"].inject("") { |sum, x| sum+x }.should == "hello"
-      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
-    #pass
 
     it "string 2 - acc = nil" do
       ["h","e","l","l","o"].inject { |sum, x| sum+x }.should == "hello"
-      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
   end
 end

@@ -39,12 +39,13 @@ class SortedArray
 
   def each_with_index &block
     i = 0
-    until i = @internal_arr.size
-      yield(@internal_arr[i], i)
+    until i == @internal_arr.size
+      yield(@internal_arr[i]); i
       i+=1
     end
     return @internal_arr
   end
+  # Not there yet...try again later...rethink what .each_with_index is supposed to do.  Pass both index and value (like hash) into &block.
 
   def each &block
     i = 0
