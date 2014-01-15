@@ -65,12 +65,12 @@ describe SortedArray do
   end
 
   describe :inject do
-    specify do 
-      expect do |b| 
-        block_with_two_args = Proc.new { |acc, el| return true }
-        sorted_array.send(method, block_with_two_args) 
-      end.to yield_successive_args( [0,2], [2,3], [5,4], [9, 7], [16,9])
-    end
+    # specify do 
+    #   expect do |b| 
+    #     block_with_two_args = Proc.new { |acc, el| return true }
+    #     sorted_array.send(method, block_with_two_args) 
+    #   end.to yield_successive_args( [0,2], [2,3], [5,4], [9, 7], [16,9])
+    # end
     #WHAT THE LITERAL AND ACTUAL FUCK?!?!?!
 
     it "numeric inject" do
@@ -91,12 +91,32 @@ describe SortedArray do
     it "numeric inject 3 - multiplication with acc = nil" do
       expect { (1..10).inject { |prod, x| prod*x } } == 3628800
     end
-    #pass
+
+    it "with sorted_array - acc = 1 - product" do
+      expect { sorted_array.inject(1) { |prod,x| prod*x } } == 1512
+    end
+    
+    it "with sorted_array - acc = nil - product" do
+      expect { sorted_array.inject(1) { |prod,x| prod*x } } == 1512
+    end
+
+    it "with sorted_array - acc = 0 - sum" do
+      expect { sorted_array.inject(0) { |sum,x| sum + x } } == 25
+    end
+
+    it "with sorted_array - acc = nil - sum" do
+      expect { sorted_array.inject { |sum,x| sum + x } } == 25
+    end
 
     it "string" do
       expect { ["h","e","l","l","o"].inject("") { |sum, x| sum+x } } == "hello"
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
     #pass
+
+    it "string 2 - acc = nil" do
+      expect { ["h","e","l","l","o"].inject { |sum, x| sum+x } } == "hello"
+      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+    end
   end
 end
