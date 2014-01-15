@@ -46,6 +46,8 @@ class SortedArray
     return @internal_arr
   end
   # Not there yet...try again later...rethink what .each_with_index is supposed to do.  Pass both index and value (like hash) into &block.
+  # Works...kinda.  Make sure tests are accurate tests for each_with_index method
+  # Really understand what is happening and why (and how)
 
   def each &block
     i = 0
@@ -82,7 +84,6 @@ class SortedArray
 
     return nil
 
-    raise NotImplementedError.new("You need to implement the find method!")
   end
 
   def inject acc=nil, &block
@@ -99,11 +100,5 @@ class SortedArray
       return acc
     end
 
-    #Can be re-written to take advantage of the nil case
-    #Code already passes nil cases with array of integers and array of strings
-
-    # self.each { |x| acc = yield(acc, x) }
-    # return acc
-    #raise NotImplementedError.new("You need to implement the inject method!")
   end
 end
