@@ -75,12 +75,13 @@ describe SortedArray do
 
     it "numeric inject" do
       expect { (1..10).inject(0) { |sum, x| sum+x } } == 55
-      #pass
     end
+    #pass
 
     it "numeric inject 2 - acc=nil" do
       expect { (1..10).inject { |sum, x| sum+x } } == 55
     end
+    #pass
 
     it "numeric inject 2 - multiplication with acc= a number" do
       expect { (1..10).inject(1) { |prod, x| prod*x } } == 3628800
