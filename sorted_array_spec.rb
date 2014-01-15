@@ -71,15 +71,31 @@ describe SortedArray do
         sorted_array.send(method, block_with_two_args) 
       end.to yield_successive_args( [0,2], [2,3], [5,4], [9, 7], [16,9])
     end
+    #WHAT THE LITERAL AND ACTUAL FUCK?!?!?!
 
     it "numeric inject" do
       expect { (1..10).inject(0) { |sum, x| sum+x } } == 55
-      #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
+      #pass
     end
+
+    it "numeric inject 2 - acc=nil" do
+      expect { (1..10).inject { |sum, x| sum+x } } == 55
+    end
+
+    it "numeric inject 2 - multiplication with acc= a number" do
+      expect { (1..10).inject(1) { |prod, x| prod*x } } == 3628800
+    end
+    #pass
+
+    it "numeric inject 3 - multiplication with acc = nil" do
+      expect { (1..10).inject { |prod, x| prod*x } } == 3628800
+    end
+    #pass
 
     it "string" do
       expect { ["h","e","l","l","o"].inject("") { |sum, x| sum+x } } == "hello"
       #pending "define some examples by looking up http://www.ruby-doc.org/core-2.1.0/Enumerable.html#method-i-inject"
     end
+    #pass
   end
 end

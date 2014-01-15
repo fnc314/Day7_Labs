@@ -93,9 +93,8 @@ class SortedArray
   end
 
   def inject acc=nil, &block
-    final = acc
-    self.each { |x| final += yield(x) }
-    return final
+    self.each { |x| acc = yield(acc, x) }
+    return acc
     #raise NotImplementedError.new("You need to implement the inject method!")
   end
 end
