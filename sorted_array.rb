@@ -44,21 +44,12 @@ class SortedArray
       i+=1
     end
     return @internal_arr
-    #raise NotImplementedError.new("You need to implement the each method!")
   end
 
   def map &block
     new_arr = []
-    # i = 0
-    # while i < @internal_arr.size
-    #   new_arr << yield(@internal_arr[i])
-    #   i+=1
-    # end
-    # return new_arr
     self.each { |x| new_arr << yield(x) }
     return new_arr
-    #DONE
-    #raise NotImplementedError.new("You need to implement the map method!")
   end
 
   def map! &block
@@ -67,9 +58,6 @@ class SortedArray
       @internal_arr[i] = yield(@internal_arr[i])
       i+=1
     end
-
-    #DONE
-    #raise NotImplementedError.new("You need to implement the map! method!")
   end
 
   def find &block
@@ -83,7 +71,7 @@ class SortedArray
     end
 
     return nil
-    
+
     raise NotImplementedError.new("You need to implement the find method!")
   end
 
